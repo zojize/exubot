@@ -16,14 +16,6 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  discord: {
-    autoStart: true,
-    watch: {
-      enabled: true,
-      sync: false,
-    }
-  },
-
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
@@ -70,6 +62,14 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: ['/'],
       ignore: ['/hi'],
+    },
+  },
+
+  discord: {
+    autoStart: true,
+    watch: {
+      enabled: true,
+      sync: false,
     },
   },
 

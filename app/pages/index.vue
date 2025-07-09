@@ -6,6 +6,8 @@ import { appDescription, appName } from '~/constants'
   <main>
     <h1>{{ appName }}</h1>
     <p>{{ appDescription }}</p>
-    <NuxtLink to="/discord/slash-commands">commands</NuxtLink>
+    <NuxtLink to="/discord/slash-commands">
+      commands
+    </NuxtLink>
   </main>
 </template>

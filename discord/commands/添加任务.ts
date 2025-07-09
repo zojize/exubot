@@ -59,7 +59,7 @@ export default defineSlashCommand(async function* (type: string, params?: string
 
   yield `任务已添加, ID: ${id}`
 
-  const task = await until(() => data.value[idx])
+  const task = await until(() => data.value[idx]!)
     .toMatch(task => task.status !== 'PENDING')
 
   if (!task) {

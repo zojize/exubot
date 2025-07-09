@@ -16,7 +16,7 @@ export default defineSlashCommand(async () => {
     status: 'PENDING',
   }) - 1
 
-  const task = await until(() => tasks.value[idx])
+  const task = await until(() => tasks.value[idx]!)
     .toMatch(task => task.status !== 'PENDING', { timeout: 5000, throwOnTimeout: true, deep: true })
     .catch(() => null)
 
