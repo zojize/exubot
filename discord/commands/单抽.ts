@@ -28,7 +28,7 @@ export default defineSlashCommand(async (pool: string) => {
   if (!gachaClientPool || !gachaServerPool) {
     return '未找到指定的池子，请检查池子名称是否正确。'
   }
-  
+
   const userId = interaction.user.id
   const executor = getGachaExecutor(userId, pool, gachaServerPool, gachaClientPool)
 

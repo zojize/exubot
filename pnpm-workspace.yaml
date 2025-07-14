@@ -39,5 +39,3 @@ onlyBuiltDependencies:
 peerDependencyRules:
   ignoreMissing:
     - webpack
-catalog:
-  '@rollup/plugin-typescript': ^0.0.0

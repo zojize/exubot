@@ -1,7 +1,7 @@
 import type { Snowflake } from 'discord.js'
 import type { GachaData, GachaPoolClientData } from 'prts-widgets/widgets/GachaSimulatorV2/gamedata-types'
 import type { GachaDBServer } from 'prts-widgets/widgets/GachaSimulatorV2/types'
-import { TORAPPU_ENDPOINT, WEEDY_ENDPOINT } from 'prts-widgets/utils/consts'
+import { WEEDY_ENDPOINT } from 'prts-widgets/utils/consts'
 import { GachaExecutor } from 'prts-widgets/widgets/GachaSimulatorV2/gacha-utils/base'
 import characters from '~~/data/ArknightsGameResource/gamedata/excel/character_table.json'
 import gachaClientTable from '~~/data/ArknightsGameResource/gamedata/excel/gacha_table.json'
