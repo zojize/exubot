@@ -1,20 +1,20 @@
+import path from 'node:path'
 import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
 export default defineNuxtConfig({
   modules: [
+    'nuxt-discord',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
     '@nuxt/eslint',
-    'nuxt-discord',
   ],
 
-  devtools: {
-    enabled: true,
-  },
+  // apparently this cause issues
+  devtools: false,
 
   app: {
     head: {
@@ -38,6 +38,14 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  alias: {
+    'prts-widgets': path.resolve(__dirname, 'deps/prts-widgets/src'),
+  },
+
+  build: {
+    transpile: [/mooncell-widget/],
+  },
+
   future: {
     compatibilityVersion: 4,
   },
@@ -58,10 +66,11 @@ export default defineNuxtConfig({
         target: 'esnext',
       },
     },
+    rollupConfig: {
+    },
     prerender: {
       crawlLinks: false,
       routes: ['/'],
-      ignore: ['/hi'],
     },
   },
 
