@@ -29,6 +29,6 @@ export default defineSlashCommand(async (pool: string) => {
   }
 
   return `本次寻访卡池为：${gachaClientPool.gachaPoolName}
-已寻访次数：${Object.values(executor.state.results).reduce((acc, cur) => acc + cur, 0)}
+已寻访次数：${executor.state.counter}
 你抽到了：${formatGachaPull(result)}`
 })
