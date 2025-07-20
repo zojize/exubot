@@ -24,6 +24,6 @@ export default defineSlashCommand(async () => {
     return '截图失败'
   }
   else {
-    return reply.edit('截图成功', { files: [task.payload!] })
+    return reply('截图成功', { files: [task.payload!] })
   }
 })
