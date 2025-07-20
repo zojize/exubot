@@ -29,7 +29,8 @@ catalogs:
   server:
     chokidar: ^4.0.3
     discord.js: ^14.21.0
-    nuxt-discord: ^0.0.14
+    nuxt-discord: ^0.0.16
+    sync-request: ^6.1.0
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
