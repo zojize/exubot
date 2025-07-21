@@ -18,6 +18,7 @@
     "chokidar": "catalog:server",
     "discord.js": "catalog:server",
     "nuxt-discord": "catalog:server",
+    "puppeteer": "catalog:server",
     "sync-request": "catalog:server"
   },
   "devDependencies": {

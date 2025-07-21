@@ -30,8 +30,8 @@ catalogs:
     chokidar: ^4.0.3
     discord.js: ^14.21.0
     nuxt-discord: ^0.0.16
+    puppeteer: ^24.14.0
     sync-request: ^6.1.0
-
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
