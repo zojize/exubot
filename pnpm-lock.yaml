@@ -73,6 +73,9 @@ catalogs:
     nuxt-discord:
       specifier: ^0.0.16
       version: 0.0.16
+    puppeteer:
+      specifier: ^24.14.0
+      version: 24.14.0
     sync-request:
       specifier: ^6.1.0
       version: 6.1.0
@@ -98,7 +101,7 @@ importers:
         specifier: catalog:server
         version: 0.0.16(@babel/parser@7.28.0)(@unocss/webpack@66.3.3)(db0@0.3.2)(discord.js@14.21.0)(embla-carousel@8.6.0)(ioredis@5.6.1)(jwt-decode@4.0.0)(magicast@0.3.5)(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.13)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.43.1)(yaml@2.8.0))(vue-router@4.5.1(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))(zod@3.25.76)
       puppeteer:
-        specifier: ^24.14.0
+        specifier: catalog:server
         version: 24.14.0(typescript@5.8.3)
       sync-request:
         specifier: catalog:server
