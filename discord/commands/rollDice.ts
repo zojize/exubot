@@ -39,9 +39,9 @@ async function getDiceRollAnimationGif(n: number) {
   await page.setViewport({ width: 400, height: 400 })
   let gotoAttempts = 0
   let failed = true
-  while (gotoAttempts < 5) {
+  while (gotoAttempts < 2) {
     try {
-      await page.goto(`http://localhost:3333/?numberOfDice=${n}&storeFrames=true&renderFixedFrames=true&cameraType=orthographic`, { timeout: 5000 })
+      await page.goto(`https://dice-roll-demo.netlify.app/?numberOfDice=${n}&storeFrames=true&renderFixedFrames=true&cameraType=orthographic`, { timeout: 5000 })
       failed = false
       break
     }
