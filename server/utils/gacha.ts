@@ -1,4 +1,4 @@
-import type { Snowflake } from 'discord.js'
+// import type { Snowflake } from 'discord.js'
 import type { GachaPoolClientData as ClientPool } from 'prts-widgets/widgets/GachaSimulatorV2/gamedata-types'
 import type { GachaDBServer, GachaPoolClientData as SeverPool } from 'prts-widgets/widgets/GachaSimulatorV2/types'
 import fs from 'node:fs'
@@ -20,7 +20,7 @@ export function readCharacters(): Record<string, { name: string }> {
 
 // TODO: keep tack of gacha history
 const gachaExecutors: Record<
-  Snowflake,
+  string,
   Record<string, {
     timestamp: number
     executor: GachaExecutor & {
@@ -30,7 +30,7 @@ const gachaExecutors: Record<
   }>
 > = {}
 
-export function getMostRecentGachaExecutor(id: Snowflake) {
+export function getMostRecentGachaExecutor(id: string) {
   const userGacha = gachaExecutors[id]
   if (!userGacha || Object.keys(userGacha).length === 0) {
     const sortedPools = getSortedGachaPools()
@@ -55,7 +55,7 @@ export function getMostRecentGachaExecutor(id: Snowflake) {
   return mostRecent
 }
 
-export function getGachaExecutor(id: Snowflake, poolId: string) {
+export function getGachaExecutor(id: string, poolId: string) {
   gachaExecutors[id] ??= {}
   const { gachaServerTable, gachaClientTable } = getGachaTables()
   gachaExecutors[id][poolId] ??= {
