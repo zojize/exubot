@@ -40,12 +40,12 @@ interface MaaGeneralTask {
 
 type MaaTask = MaaSettingsTask | MaaGeneralTask
 
-type MaaTaskStatus = 'PENDING' | 'SUCCESS' | 'FAILURE'
+type MaaTaskStatus = 'PENDING' | 'SUCCESS' | 'FAILED' | 'FAILURE'
 
 interface MaaStatusReport {
   user: string
   device: string
   task: string
-  status: 'SUCCESS' | 'FAILURE'
+  status: Exclude<MaaTaskStatus, 'PENDING'>
   payload: string
 }

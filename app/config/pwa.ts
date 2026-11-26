@@ -4,7 +4,7 @@ import { appDescription, appName } from '../constants/index'
 
 const scope = '/'
 
-export const pwa: ModuleOptions = {
+export const pwa: Partial<ModuleOptions> = {
   registerType: 'autoUpdate',
   scope,
   base: scope,
@@ -34,7 +34,7 @@ export const pwa: ModuleOptions = {
       },
     ],
   },
-  workbox: {
+  generateSW: {
     globPatterns: ['**/*.{js,css,html,txt,png,ico,svg}'],
     navigateFallbackDenylist: [/^\/api\//],
     navigateFallback: '/',

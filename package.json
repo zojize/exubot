@@ -1,7 +1,10 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@12.23.0",
+  "engines": {
+    "node": "^24.15.0 || >=26.0.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev:pwa": "VITE_PLUGIN_PWA=true nuxt dev",
@@ -12,14 +15,14 @@
     "start": "node .output/server/index.mjs",
     "start:generate": "npx serve .output/public",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test": "node --test tests/*.test.*"
   },
   "dependencies": {
     "chokidar": "catalog:server",
     "discord.js": "catalog:server",
     "nuxt-discord": "catalog:server",
-    "puppeteer": "catalog:server",
-    "sync-request": "catalog:server"
+    "puppeteer": "catalog:server"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",
@@ -29,8 +32,10 @@
     "@nuxt/eslint": "catalog:build",
     "@nuxtjs/color-mode": "catalog:build",
     "@pinia/nuxt": "catalog:build",
+    "@types/node": "catalog:dev",
     "@unocss/eslint-config": "catalog:build",
     "@unocss/nuxt": "catalog:build",
+    "@unocss/preset-web-fonts": "catalog:build",
     "@vite-pwa/nuxt": "catalog:build",
     "@vueuse/core": "catalog:frontend",
     "@vueuse/nuxt": "catalog:build",
@@ -42,12 +47,5 @@
     "unocss": "catalog:build",
     "vue": "catalog:frontend",
     "vue-tsc": "catalog:dev"
-  },
-  "resolutions": {
-    "@nuxt/devtools": "catalog:build",
-    "@nuxt/kit": "catalog:build",
-    "nuxt": "catalog:build",
-    "unplugin": "catalog:build",
-    "vite": "catalog:build"
   }
 }

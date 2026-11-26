@@ -1,42 +1,54 @@
-catalogs:
-  build:
-    '@nuxt/devtools': ^2.5.0
-    '@nuxt/eslint': ^1.5.2
-    '@nuxt/kit': ^3.17.5
-    '@nuxtjs/color-mode': ^3.5.2
-    '@pinia/nuxt': ^0.11.1
-    '@unocss/eslint-config': ^66.3.3
-    '@unocss/nuxt': ^66.3.3
-    '@vite-pwa/nuxt': ^1.0.4
-    '@vueuse/nuxt': ^13.5.0
-    nuxt: ^3.17.5
-    unocss: ^66.3.3
-    unplugin: ^2.3.5
-    vite: ^6.3.5
-  dev:
-    '@antfu/eslint-config': ^4.16.2
-    eslint: ^9.31.0
-    eslint-plugin-format: ^1.0.1
-    typescript: ^5.8.3
-    vue-tsc: ^2.2.12
-  frontend:
-    '@vueuse/core': ^13.5.0
-    pinia: ^3.0.3
-    vue: ^3.5.17
-  icons:
-    '@iconify-json/carbon': ^1.2.10
-    '@iconify-json/twemoji': ^1.2.2
-  server:
-    chokidar: ^4.0.3
-    discord.js: ^14.21.0
-    nuxt-discord: ^0.0.16
-    puppeteer: ^24.14.0
-    sync-request: ^6.1.0
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - unrs-resolver
+minimumReleaseAgeExclude:
+  - '@nuxt/devtools-assets@4.2.2'
+  - '@nuxt/devtools-kit@4.2.2'
+  - '@nuxt/devtools@4.2.2'
+  - '@puppeteer/browsers@3.3.0'
+  - nuxt-discord@0.1.0
+  - puppeteer-core@25.19.0
+  - puppeteer@25.19.0
 
 peerDependencyRules:
   ignoreMissing:
     - webpack
+
+shellEmulator: true
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  puppeteer: true
+  unrs-resolver: true
+  vue-demi: true
+
+catalogs:
+  build:
+    '@nuxt/devtools': ^4.2.2
+    '@nuxt/eslint': ^1.17.0
+    '@nuxtjs/color-mode': ^4.1.0
+    '@pinia/nuxt': ^1.0.3
+    '@unocss/eslint-config': ^66.13.0
+    '@unocss/nuxt': ^66.13.0
+    '@unocss/preset-web-fonts': ^66.13.0
+    '@vite-pwa/nuxt': ^2.0.4
+    '@vueuse/nuxt': ^15.1.0
+    nuxt: ^4.7.0
+    unocss: ^66.13.0
+  dev:
+    '@antfu/eslint-config': ^10.0.0
+    '@types/node': ^24
+    eslint: ^10.15.0
+    eslint-plugin-format: ^2.0.1
+    typescript: npm:@typescript/typescript6@^6.0.2
+    vue-tsc: ^3.3.14
+  frontend:
+    '@vueuse/core': ^15.1.0
+    pinia: ^4.1.0
+    vue: ^3.5.46
+  icons:
+    '@iconify-json/carbon': ^1.2.30
+    '@iconify-json/twemoji': ^1.2.5
+  server:
+    chokidar: ^6.0.0
+    discord.js: ^14.28.1
+    nuxt-discord: 0.1.0
+    puppeteer: ^25.19.0

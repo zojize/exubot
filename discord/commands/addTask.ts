@@ -39,8 +39,6 @@ export default defineSlashCommand(async function* (type: string, params?: string
 
   const id = crypto.randomUUID()
 
-  const idx = data.value.length
-
   if (type.startsWith('Settings-')) {
     data.value.push({
       type: type as MaaSettingsTask['type'],
@@ -59,12 +57,15 @@ export default defineSlashCommand(async function* (type: string, params?: string
 
   yield `任务已添加, ID: ${id}`
 
-  const task = await until(() => data.value[idx]!)
-    .toMatch(task => task.status !== 'PENDING')
+  // Leave time to send the follow-up before Discord's interaction token expires.
+  const task = await until(() => data.value.find(task => task.id === id && task.status !== 'PENDING'))
+    .toMatch(Boolean, { timeout: 14 * 60_000 })
 
   if (!task) {
     return '任务因未知原因添加失败，可能是服务器未响应或任务超时。'
   }
 
-  return `任务已完成，状态: ${task.status}\n${task.payload?.length ? `结果: ${task.payload}` : ''}`
+  return `任务已完成，状态: ${task.status}\n${task.payload?.length
+    ? `结果: ${task.payload}`
+    : ''}`
 })

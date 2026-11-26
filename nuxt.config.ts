@@ -74,6 +74,17 @@ export default defineNuxtConfig({
     },
   },
 
+  typescript: {
+    // Both contexts import the prts-widgets sources through Nitro's generated types.
+    tsConfig: {
+      compilerOptions: { noUncheckedIndexedAccess: false },
+    },
+    serverTsConfig: {
+      compilerOptions: { noUncheckedIndexedAccess: false },
+      include: ['../discord/**/*.ts'],
+    },
+  },
+
   discord: {
     autoStart: true,
     watch: {

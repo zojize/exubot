@@ -10,20 +10,19 @@ export default defineSlashCommand(async () => {
 
   const id = crypto.randomUUID()
 
-  const idx = tasks.value.push({
+  tasks.value.push({
     type: 'CaptureImageNow',
     id,
     status: 'PENDING',
-  }) - 1
+  })
 
-  const task = await until(() => tasks.value[idx]!)
-    .toMatch(task => task.status !== 'PENDING', { timeout: 5000, throwOnTimeout: true, deep: true })
-    .catch(() => null)
+  const task = await until(() => tasks.value.find(task => task.id === id && task.status !== 'PENDING'))
+    .toMatch(Boolean, { timeout: 5000 })
 
-  if (!task || task.status !== 'SUCCESS' || !task.payload) {
+  if (task?.status !== 'SUCCESS' || !task.payload) {
     return '截图失败'
   }
-  else {
-    return reply('截图成功', { files: [task.payload!] })
-  }
+  return reply('截图成功', {
+    files: [task.payload],
+  })
 })

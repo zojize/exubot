@@ -1,5 +1,7 @@
 name: Deploy to NuxtHub
-on: push
+on:
+  push:
+    branches: [main]
 
 jobs:
   deploy:
@@ -20,7 +22,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .node-version
           cache: pnpm
 
       - name: Install dependencies
