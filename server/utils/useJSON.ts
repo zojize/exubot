@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import fs from 'node:fs'
 import chokidar from 'chokidar'
-import { ref, watch } from 'vue'
+import { effectScope, ref, watch } from 'vue'
 
 interface UseJSONReturn<T> {
   watcher: ReturnType<typeof chokidar.watch>
@@ -21,63 +21,62 @@ export function useJSON<T>(filename: string, initialData: T): UseJSONReturn<T> {
   const data = ref(initialData) as Ref<T>
   const error = ref<unknown>(undefined)
 
-  let lock = false
+  let persisted: string | undefined
   const read = () => {
-    if (lock) {
-      return
-    }
-    lock = true
     try {
       const content = fs.readFileSync(filename, 'utf-8')
-      data.value = JSON.parse(content) as T
+      if (content !== persisted) {
+        const parsed: T = JSON.parse(content)
+        const serialized = JSON.stringify(parsed)
+        if (serialized !== persisted) {
+          persisted = serialized
+          data.value = parsed
+        }
+      }
+      error.value = undefined
     }
-    finally {
-      lock = false
+    catch (err) {
+      persisted = undefined
+      error.value = err
     }
   }
 
   const write = (newData: T | undefined) => {
-    if (lock || newData === undefined) {
+    if (newData === undefined) {
       return
     }
-    lock = true
     try {
-      fs.writeFileSync(filename, JSON.stringify(newData), 'utf-8')
+      const serialized = JSON.stringify(newData)
+      if (serialized !== persisted) {
+        fs.writeFileSync(filename, serialized, 'utf-8')
+        persisted = serialized
+      }
+      error.value = undefined
     }
     catch (err) {
       error.value = err
-    }
-    finally {
-      lock = false
     }
   }
 
   if (fs.existsSync(filename)) {
-    try {
-      read()
-    }
-    catch (err) {
-      error.value = err
-    }
+    read()
   }
   else {
     write(initialData)
-    data.value = initialData
   }
 
-  const watcher = chokidar.watch(filename, { ignoreInitial: true })
+  const watcher = chokidar.watch(filename, { ignoreInitial: true, backend: 'polling', pollingInterval: 250 })
     .on('add', read)
     .on('change', read)
     .on('unlink', read)
     .on('error', err => (error.value = err))
 
-  const pauseWatch = watch(data, (newData) => {
-    write(newData)
-  }, { deep: true })
+  const scope = effectScope(true)
+  scope.run(() => watch(data, write, { deep: true }))
 
   const stop = () => {
     watcher.close()
-    pauseWatch()
+    scope.stop()
     delete useJSONCache[filename]
   }
 
