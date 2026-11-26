@@ -11,6 +11,7 @@ import puppeteer from 'puppeteer'
  * @description 模拟投掷骰子。
  */
 export default defineSlashCommand(async (n: integer) => {
+  describeCommand({ defer: 'public' })
   describeOption(n, {
     name: '骰子个数',
     description: '指定骰子的个数。',
