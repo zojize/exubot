@@ -19,6 +19,7 @@ export default defineSlashCommand(async (n: integer) => {
     max: 6,
   })
 
+  await useInteraction()!.deferReply()
   const { animationGif, rollResult } = await getDiceRollAnimationGif(n)
   return reply
     .file(animationGif)

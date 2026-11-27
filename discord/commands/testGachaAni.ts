@@ -4,7 +4,9 @@ import { ref } from 'vue'
  * @name 测试寻访动画
  * @description 测试寻访动画
  */
-export default defineSlashCommand(() => {
+export default defineSlashCommand(async () => {
+  await useInteraction()!.deferReply()
+
   // TODO: make the gifs non-looping to discord somehow
   const gif = ref('data/gacha_begin.gif')
   const hide = ref(false)
