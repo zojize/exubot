@@ -3,6 +3,7 @@
  * @description 模拟单次寻访
  */
 export default defineSlashCommand(async (pool?: string) => {
+  describeCommand({ defer: 'public' })
   describeOption(pool, {
     name: '寻访卡池',
     description: '指定单次寻访的卡池名称。',

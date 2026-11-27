@@ -6,6 +6,8 @@ import { until } from '@vueuse/core'
  * @description 截图当前模拟器并回复结果。
  */
 export default defineSlashCommand(async () => {
+  await useInteraction()!.deferReply()
+
   const { data: tasks } = useMAATasks()
 
   const id = crypto.randomUUID()
